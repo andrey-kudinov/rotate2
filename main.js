@@ -1,49 +1,50 @@
 let inputIn = document.querySelector(".in");
-inputIn.oninput = function () {
-  if (document.querySelector(".letter")) {
-    document.querySelectorAll(".letter").forEach((el) => {
+inputIn.oninput = () => {
+  if (document.querySelector(".char")) {
+    document.querySelectorAll(".char").forEach((el) => {
       el.remove();
     });
   }
-  for (let i = 0; i < inputIn.value.length; i++) {
-    addFront();
-  }
-  for (let i = 0; i < inputIn.value.length; i++) {
-    let front = document.querySelectorAll(".front");
-    console.log(front[i]);
-    front[i].textContent = inputIn.value.charAt(i);
-  }
+  full();
 };
 
 let inputOut = document.querySelector(".out");
-inputOut.oninput = function () {
-  if (document.querySelector(".back")) {
-    document.querySelectorAll(".back").forEach((el) => {
+inputOut.oninput = () => {
+  if (document.querySelector(".char")) {
+    document.querySelectorAll(".char").forEach((el) => {
       el.remove();
     });
   }
-  addBack();
-  // for (let i = 0; i < inputOut.value.length; i++) {
-  //   let back = document.querySelectorAll(".back");
-  //   console.log(back[i]);
-  //   back[i].textContent = inputOut.value.charAt(i);
-  // }
+  full();
 };
 
-function addFront() {
-  let front = document.createElement("div");
-  front.classList.add(`front`);
-  let letter = document.createElement("div");
-  letter.classList.add("letter");
-  document.querySelector(`.letters`).appendChild(letter);
-  let letterArr = document.querySelectorAll(`.letter`);
-  letterArr[letterArr.length - 1].appendChild(front);
-}
+const add = () => {
+  let char = document.createElement("div");
+  char.classList.add("char");
+  char.innerHTML = `<div class="front"></div>
+  <div class="back"></div>`;
+  document.querySelector(`.characters`).appendChild(char);
+};
 
-function addBack() {
-  let back = document.createElement("div");
-  back.classList.add(`back`);
-  // todo здесь нужен цикл
-  let letterArr = document.querySelectorAll(`.letter`);
-  letterArr[inputOut.value.length - 1].appendChild(back);
-}
+const full = () => {
+  for (let i = 0; i < inputIn.value.length; i++) {
+    add();
+    document.querySelectorAll(".front")[i].textContent =
+      inputIn.value.charAt(i);
+    document.querySelectorAll(".back")[i].textContent =
+      inputOut.value.charAt(i);
+  }
+  move()
+};
+
+const move = () => {document.querySelectorAll(".char").forEach((el) => {
+  el.addEventListener("mouseenter", function () {
+    if (el.classList.contains("open")) {
+      el.classList.remove("open");
+    } else {
+      el.classList.add("open");
+    }
+  });
+})};
+
+move()

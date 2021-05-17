@@ -1,0 +1,91 @@
+html {
+  width: 100%;
+  min-height: 100vh;
+  background-color: lavender;
+  overflow: hidden auto;
+}
+body {
+  font-family: system-ui, sans-serif;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+section {
+  width: 100%;
+  height: 70vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+input {
+  padding: 0 20px;
+  border-radius: 30px;
+  height: 35px;
+  outline: none;
+}
+.in {
+  position: absolute;
+  transform: translateX(-50%);
+  top: 20%;
+}
+.out {
+  position: absolute;
+  transform: translateX(-50%);
+  top: 30%;
+}
+.characters {
+  display: flex;
+  
+}
+.char {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+.back {
+  background: antiquewhite;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  transform: rotateX(180deg);
+  transition: 1s ease;
+  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+   user-select: none;
+}
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background-color: azure;
+  z-index: 2;
+  cursor: pointer;
+  transition: 1s ease;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+   user-select: none;
+}
+
+.open .front{
+  transform: rotateX(180deg);
+}
+.open .back{
+  transform: rotateX(0deg);
+}
